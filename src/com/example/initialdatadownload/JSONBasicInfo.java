@@ -1,11 +1,20 @@
 package com.example.initialdatadownload;
 
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.StreamCorruptedException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import android.util.Log;
 
 public class JSONBasicInfo {
 	public static String url="http://14.63.214.51:8080/schoolinfo/University_List.jsp";
@@ -23,16 +32,13 @@ public class JSONBasicInfo {
 
 	public ArrayList<HashMap<String, String>> getData(JSONObject result)
 	{
-		resultList= new ArrayList<HashMap<String,String>>();
-		JSONObject mJsonObject =result;
-
 		try
 		{
+			
+			JSONObject mJsonObject =result;
 			HashMap<String, String> map1=new HashMap<String, String>();
 			String totalCount = mJsonObject.getString(TAG_totalCount);
 			contents=mJsonObject.getJSONArray(TAG_list);
-			map1.put(TAG_totalCount, totalCount);
-			resultList.add(map1);
 
 			for(int i=0; i<contents.length();i++)
 			{
@@ -46,15 +52,14 @@ public class JSONBasicInfo {
 
 				
 				HashMap<String, String> map=new HashMap<String, String>();
-				
+				map.put(TAG_totalCount, totalCount);
 				map.put(TAG_universitySeq,universitySeq );
 				map.put(TAG_address, address);
 				map.put(TAG_tel, tel);
 				map.put(TAG_name, name);
 				map.put(TAG_homepage, homepage);
 				
-				resultList.add(map);
-				
+				resultList.add(map);			
 			}
 				
 		}

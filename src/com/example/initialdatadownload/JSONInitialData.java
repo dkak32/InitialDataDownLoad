@@ -58,13 +58,14 @@ public class JSONInitialData {
 					{
 						JSONObject RowTemp = rows.getJSONObject(k);
 
-						HashMap<String, String> RowMap=new HashMap<String, String>();
+						
 
 						String title = RowTemp.getString(TAG_title);
 						String rowbSeq = RowTemp.getString(TAG_bSeq);
 						String likeCnt = RowTemp.getString(TAG_likeCnt);
 						String cnt = RowTemp.getString(TAG_cnt);
 
+						HashMap<String, String> RowMap=new HashMap<String, String>();
 						RowMap.put(TAG_uniSeq, uniSeq);
 						RowMap.put(TAG_uniName, uniName);
 						RowMap.put(TAG_bSeq, bSeq);
